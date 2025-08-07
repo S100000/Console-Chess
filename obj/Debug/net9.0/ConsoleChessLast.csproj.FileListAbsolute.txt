@@ -1,0 +1,14 @@
+C:\Users\José\Desktop\ConsoleChessLast\bin\Debug\net9.0\ConsoleChessLast.exe
+C:\Users\José\Desktop\ConsoleChessLast\bin\Debug\net9.0\ConsoleChessLast.deps.json
+C:\Users\José\Desktop\ConsoleChessLast\bin\Debug\net9.0\ConsoleChessLast.runtimeconfig.json
+C:\Users\José\Desktop\ConsoleChessLast\bin\Debug\net9.0\ConsoleChessLast.dll
+C:\Users\José\Desktop\ConsoleChessLast\bin\Debug\net9.0\ConsoleChessLast.pdb
+C:\Users\José\Desktop\ConsoleChessLast\obj\Debug\net9.0\ConsoleChessLast.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\José\Desktop\ConsoleChessLast\obj\Debug\net9.0\ConsoleChessLast.AssemblyInfoInputs.cache
+C:\Users\José\Desktop\ConsoleChessLast\obj\Debug\net9.0\ConsoleChessLast.AssemblyInfo.cs
+C:\Users\José\Desktop\ConsoleChessLast\obj\Debug\net9.0\ConsoleChessLast.csproj.CoreCompileInputs.cache
+C:\Users\José\Desktop\ConsoleChessLast\obj\Debug\net9.0\ConsoleChessLast.dll
+C:\Users\José\Desktop\ConsoleChessLast\obj\Debug\net9.0\refint\ConsoleChessLast.dll
+C:\Users\José\Desktop\ConsoleChessLast\obj\Debug\net9.0\ConsoleChessLast.pdb
+C:\Users\José\Desktop\ConsoleChessLast\obj\Debug\net9.0\ConsoleChessLast.genruntimeconfig.cache
+C:\Users\José\Desktop\ConsoleChessLast\obj\Debug\net9.0\ref\ConsoleChessLast.dll
