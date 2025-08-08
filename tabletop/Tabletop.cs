@@ -1,4 +1,5 @@
 
+using System.IO.Compression;
 using System.Xml;
 
 namespace tabletop
@@ -22,10 +23,42 @@ namespace tabletop
             return pieces[line, column];
         }
 
+        public Piece showPiece(Position Pos)
+        {
+            return pieces[Pos.line, Pos.column];
+        }
+
         public void PlacePiece(Piece p, Position pos)
         {
+            if (TheresAPiece(pos))
+            {
+                throw new TabletopException("There is a pice in that position");
+            }
             pieces[pos.line, pos.column] = p;
             p.pos = pos;
+        }
+
+        public bool TheresAPiece(Position pos)
+        {
+            validatePosition(pos);
+            return showPiece(pos) != null;
+        }
+        public bool isPositionValid(Position pos)
+        {
+            if (pos.line < 0 || pos.line >= lines || pos.column < 0 || pos.column >= columns)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public void validatePosition(Position pos)
+        {
+            if (!isPositionValid(pos))
+            {
+                throw new TabletopException("Invalid Position");
+            }
         }
     }
 }
