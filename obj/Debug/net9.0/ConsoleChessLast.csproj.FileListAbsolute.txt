@@ -12,3 +12,4 @@ C:\Users\José\Desktop\ConsoleChessLast\obj\Debug\net9.0\refint\ConsoleChessLast
 C:\Users\José\Desktop\ConsoleChessLast\obj\Debug\net9.0\ConsoleChessLast.pdb
 C:\Users\José\Desktop\ConsoleChessLast\obj\Debug\net9.0\ConsoleChessLast.genruntimeconfig.cache
 C:\Users\José\Desktop\ConsoleChessLast\obj\Debug\net9.0\ref\ConsoleChessLast.dll
+C:\Users\José\Desktop\ConsoleChessLast\obj\Debug\net9.0\ConsoleChessLast.sourcelink.json
