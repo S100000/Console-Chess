@@ -8,9 +8,9 @@ namespace tabletop
 
         public Tabletop tab { get; protected set; }
 
-        public Piece(Position pos, Color color, Tabletop tab)
+        public Piece(Color color, Tabletop tab)
         {
-            this.pos = pos;
+            this.pos = null;
             this.color = color;
             this.tab = tab;
             this.qtdMoves = 0;

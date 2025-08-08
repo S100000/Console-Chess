@@ -21,5 +21,11 @@ namespace tabletop
         {
             return pieces[line, column];
         }
+
+        public void PlacePiece(Piece p, Position pos)
+        {
+            pieces[pos.line, pos.column] = p;
+            p.pos = pos;
+        }
     }
 }
