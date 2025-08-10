@@ -10,18 +10,20 @@ namespace ConsoleChess
         {
             try
             {
-                Tabletop tab = new Tabletop(8, 8);
+                ChessMatch match = new ChessMatch();
+                while (!match.finished)
+                {
+                    Console.Clear();
+                    Screen.PrintTabletop(match.tab);
+                    Console.WriteLine();
+                    Console.Write("Origin: ");
+                    Position origin = Screen.readPositionChess().toPosition();
+                    Console.Write("Destiny: ");
+                    Position destiny = Screen.readPositionChess().toPosition();
 
-                tab.PlacePiece(new Tower(Color.Black, tab), new Position(0, 0));
-                tab.PlacePiece(new King(Color.Black, tab), new Position(1, 3));
-                tab.PlacePiece(new Bishop(Color.Black, tab), new Position(4, 0));
-                tab.PlacePiece(new Knight(Color.Black, tab), new Position(7, 3));
-                tab.PlacePiece(new Knight(Color.Black, tab), new Position(6, 1));
-                tab.PlacePiece(new Pawn(Color.Black, tab), new Position(1, 4));
-                tab.PlacePiece(new Queen(Color.Black, tab), new Position(0, 1));
-                tab.PlacePiece(new Queen(Color.White, tab), new Position(3, 5));
+                    match.PerformeMove(origin, destiny);
+                } 
                 
-                Screen.PrintTabletop(tab);
             }
             catch (TabletopException e)
             {

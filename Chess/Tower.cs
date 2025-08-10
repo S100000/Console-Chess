@@ -8,6 +8,11 @@ namespace Chess
         {
         }
 
+        public override bool[,] possibleMoves()
+        {
+            bool[,] mat 
+        }
+
         public override string ToString()
         {
             return "T";

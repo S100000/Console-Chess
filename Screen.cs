@@ -1,8 +1,9 @@
+using Chess;
 using tabletop;
 
 namespace ConsoleChess
 {
-    class Screen
+     class Screen
     {
         public static void PrintTabletop(Tabletop tab)
         {
@@ -25,6 +26,14 @@ namespace ConsoleChess
                 Console.WriteLine();
             }
             System.Console.WriteLine("  a b c d e f g h");
+        }
+
+        public static PositionChess readPositionChess()
+        {
+            string s = Console.ReadLine();
+            char column = s[0];
+            int line = int.Parse(s[1] + "");
+            return new PositionChess(column, line);
         }
 
         public static void PrintPiece(Piece piece)

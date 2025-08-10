@@ -12,6 +12,11 @@ namespace tabletop
             this.line = line;
         }
 
+        public void defineValues(int line, int column)
+        {
+            this.column = column;
+            this.line = line;
+        }
         public override string ToString()
         {
             return line + ", " + column;

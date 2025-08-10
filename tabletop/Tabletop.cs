@@ -38,6 +38,18 @@ namespace tabletop
             p.pos = pos;
         }
 
+        public Piece? RemovePiece(Position pos)
+        {
+            if (showPiece(pos) == null)
+            {
+                return null;
+            }
+            Piece aux = showPiece(pos);
+            aux.pos = null;
+            pieces[pos.line, pos.column] = null;
+            return aux;
+        }
+
         public bool TheresAPiece(Position pos)
         {
             validatePosition(pos);
