@@ -18,6 +18,11 @@ namespace ConsoleChess
                     Console.WriteLine();
                     Console.Write("Origin: ");
                     Position origin = Screen.readPositionChess().toPosition();
+
+                    bool[,] possiblePositions = match.tab.showPiece(origin).possibleMoves();
+                    Console.Clear();
+                    Screen.PrintTabletop(match.tab, possiblePositions);
+                    Console.WriteLine();
                     Console.Write("Destiny: ");
                     Position destiny = Screen.readPositionChess().toPosition();
 

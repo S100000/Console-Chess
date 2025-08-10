@@ -23,51 +23,51 @@ namespace Chess
             Position position = new Position(0, 0);
 
             position.defineValues(pos.line - 1, pos.column);//above king
-            if (tab.isPositionValid(pos) && CanMove(pos))
+            if (tab.isPositionValid(position) && CanMove(position))
             {
-                mat[pos.line, pos.column] = true;
+                mat[position.line, position.column] = true;
             }
 
             position.defineValues(pos.line - 1, pos.column + 1);//northeast king
-            if (tab.isPositionValid(pos) && CanMove(pos))
+            if (tab.isPositionValid(position) && CanMove(position))
             {
-                mat[pos.line, pos.column] = true;
+                mat[position.line, position.column] = true;
             }
 
             position.defineValues(pos.line, pos.column + 1);//right king
-            if (tab.isPositionValid(pos) && CanMove(pos))
+            if (tab.isPositionValid(position) && CanMove(position))
             {
-                mat[pos.line, pos.column] = true;
+                mat[position.line, position.column] = true;
             }
 
             position.defineValues(pos.line + 1, pos.column + 1);//southeast king
-            if (tab.isPositionValid(pos) && CanMove(pos))
+            if (tab.isPositionValid(position) && CanMove(position))
             {
-                mat[pos.line, pos.column] = true;
+                mat[position.line, position.column] = true;
             }
 
             position.defineValues(pos.line + 1, pos.column);//below king
-            if (tab.isPositionValid(pos) && CanMove(pos))
+            if (tab.isPositionValid(position) && CanMove(position))
             {
-                mat[pos.line, pos.column] = true;
+                mat[position.line, position.column] = true;
             }
 
             position.defineValues(pos.line + 1, pos.column - 1);//southwest king
-            if (tab.isPositionValid(pos) && CanMove(pos))
+            if (tab.isPositionValid(position) && CanMove(position))
             {
-                mat[pos.line, pos.column] = true;
+                mat[position.line, position.column] = true;
             }
 
             position.defineValues(pos.line, pos.column - 1);//left king
-            if (tab.isPositionValid(pos) && CanMove(pos))
+            if (tab.isPositionValid(position) && CanMove(position))
             {
-                mat[pos.line, pos.column] = true;
+                mat[position.line, position.column] = true;
             }
 
             position.defineValues(pos.line - 1, pos.column - 1);//northwest king
-            if (tab.isPositionValid(pos) && CanMove(pos))
+            if (tab.isPositionValid(position) && CanMove(position))
             {
-                mat[pos.line, pos.column] = true;
+                mat[position.line, position.column] = true;
             }
 
             return mat;
