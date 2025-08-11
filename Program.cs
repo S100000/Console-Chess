@@ -36,7 +36,9 @@ namespace ConsoleChess
                         Console.WriteLine(e.Message);
                         Console.ReadLine();
                     }
-                } 
+                }
+                Console.Clear();
+                Screen.PrintMatch(match);
                 
             }
             catch (TabletopException e)
