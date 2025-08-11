@@ -22,5 +22,26 @@ namespace tabletop
         {
             qtdMoves++;
         }
+
+        public bool ThereArePossibleMoves()
+        {
+            bool[,] mat = possibleMoves();
+            for (int i = 0; i < tab.lines; i++)
+            {
+                for (int j = 0; j < tab.columns; j++)
+                {
+                    if (mat[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool CanMoveTo(Position pos)
+        {
+            return possibleMoves()[pos.line, pos.column];
+        }
     }
 }
