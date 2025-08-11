@@ -1,4 +1,5 @@
 
+using System.Data.Common;
 using tabletop;
 
 namespace Chess
@@ -9,6 +10,8 @@ namespace Chess
         public int turn { get; private set; }
         public Color currentPlayer { get; private set; }
         public bool finished { get; private set; }
+        private HashSet<Piece> pieces;
+        private HashSet<Piece> captured;
 
         public ChessMatch()
         {
@@ -16,6 +19,8 @@ namespace Chess
             turn = 1;
             currentPlayer = Color.White;
             finished = false;
+            pieces = new HashSet<Piece>();
+            captured = new HashSet<Piece>();
             PlaceAllPieces();
         }
 
@@ -25,6 +30,10 @@ namespace Chess
             p.IcrementQtdMove();
             Piece capturedPiece = tab.RemovePiece(destiny);
             tab.PlacePiece(p, destiny);
+            if (capturedPiece != null)
+            {
+                captured.Add(capturedPiece);
+            }
         }
 
         public void makesAPlay(Position Origin, Position Destiny)
@@ -71,21 +80,53 @@ namespace Chess
 
         }
 
+        public HashSet<Piece> CapturedPieces(Color color)
+        {
+            HashSet<Piece> aux = new HashSet<Piece>();
+            foreach (Piece x in captured)
+            {
+                if (x.color == color)
+                {
+                    aux.Add(x);
+                }
+            }
+            return aux;
+        }
+
+        public HashSet<Piece> PiecesInGame(Color color)
+        {
+            HashSet<Piece> aux = new HashSet<Piece>();
+            foreach (Piece x in pieces)
+            {
+                if (x.color == color)
+                {
+                    aux.Add(x);
+                }
+            }
+            aux.ExceptWith(CapturedPieces(color));
+            return aux;
+        }
+
+        public void PlaceNewPiece(char column, int line, Piece piece)
+        {
+            tab.PlacePiece(piece, new PositionChess(column, line).toPosition());
+            pieces.Add(piece);
+        }
         private void PlaceAllPieces()
         {
-            tab.PlacePiece(new Tower(Color.White, tab), new PositionChess('c', 1).toPosition());
-            tab.PlacePiece(new Tower(Color.White, tab), new PositionChess('c', 2).toPosition());
-            tab.PlacePiece(new Tower(Color.White, tab), new PositionChess('d', 2).toPosition());
-            tab.PlacePiece(new Tower(Color.White, tab), new PositionChess('e', 2).toPosition());
-            tab.PlacePiece(new Tower(Color.White, tab), new PositionChess('e', 1).toPosition());
-            tab.PlacePiece(new King(Color.White, tab), new PositionChess('d', 1).toPosition());
-
-            tab.PlacePiece(new Tower(Color.Black, tab), new PositionChess('c', 7).toPosition());
-            tab.PlacePiece(new Tower(Color.Black, tab), new PositionChess('c', 8).toPosition());
-            tab.PlacePiece(new Tower(Color.Black, tab), new PositionChess('d', 7).toPosition());
-            tab.PlacePiece(new Tower(Color.Black, tab), new PositionChess('e', 7).toPosition());
-            tab.PlacePiece(new Tower(Color.Black, tab), new PositionChess('e', 8).toPosition());
-            tab.PlacePiece(new King(Color.Black, tab), new PositionChess('d', 8).toPosition());
+            PlaceNewPiece('c', 1, new Tower(Color.White, tab));
+            PlaceNewPiece('c', 2, new Tower(Color.White, tab));
+            PlaceNewPiece('d', 2, new Tower(Color.White, tab));
+            PlaceNewPiece('e', 2, new Tower(Color.White, tab));
+            PlaceNewPiece('e', 1, new Tower(Color.White, tab));
+            PlaceNewPiece('d', 1, new King(Color.White, tab));
+            
+            PlaceNewPiece('c', 7, new Tower(Color.Black, tab));
+            PlaceNewPiece('c', 8, new Tower(Color.Black, tab));
+            PlaceNewPiece('d', 7, new Tower(Color.Black, tab));
+            PlaceNewPiece('e', 7, new Tower(Color.Black, tab));
+            PlaceNewPiece('e', 8, new Tower(Color.Black, tab));
+            PlaceNewPiece('d', 8, new King(Color.Black, tab));
         }
     }
 }

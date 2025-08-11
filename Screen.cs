@@ -5,6 +5,39 @@ namespace ConsoleChess
 {
      class Screen
     {
+
+        public static void PrintMatch(ChessMatch match)
+        {
+            PrintTabletop(match.tab);
+            System.Console.WriteLine();
+            PrintCapturedPieces(match);     
+            Console.WriteLine();
+            Console.WriteLine("Turn: " + match.turn);
+            System.Console.WriteLine("Waiting play: " + match.currentPlayer);
+        }
+
+        public static void PrintCapturedPieces(ChessMatch match)
+        {
+            System.Console.WriteLine("Captured Pieces: ");
+            System.Console.Write("White: ");
+            PrintGroup(match.CapturedPieces(Color.White));
+            System.Console.Write("Black: ");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            PrintGroup(match.CapturedPieces(Color.Black));
+            Console.ForegroundColor = aux;
+            System.Console.WriteLine();
+        }
+
+        public static void PrintGroup(HashSet<Piece> group)
+        {
+            System.Console.Write("[");
+            foreach (Piece x in group)
+            {
+                System.Console.Write(x + ", ");
+            }
+            System.Console.Write("] ");
+        }
         public static void PrintTabletop(Tabletop tab)
         {
             for (int i = 0; i < tab.lines; i++)
@@ -12,7 +45,7 @@ namespace ConsoleChess
                 Console.Write(8 - i + " ");
                 for (int j = 0; j < tab.columns; j++)
                 {
-                     PrintPiece(tab.showPiece(i, j));
+                    PrintPiece(tab.showPiece(i, j));
                 }
                 Console.WriteLine();
             }

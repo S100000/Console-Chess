@@ -16,7 +16,7 @@ namespace ConsoleChess
                     try
                     {
                         Console.Clear();
-                        Screen.PrintTabletop(match.tab);
+                        Screen.PrintMatch(match);
                         Console.WriteLine();
                         Console.WriteLine("Turn: " + match.turn);
                         System.Console.WriteLine("Waiting play: " + match.currentPlayer);
