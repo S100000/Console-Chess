@@ -10,10 +10,15 @@ namespace ConsoleChess
         {
             PrintTabletop(match.tab);
             System.Console.WriteLine();
-            PrintCapturedPieces(match);     
+            PrintCapturedPieces(match);
             Console.WriteLine();
             Console.WriteLine("Turn: " + match.turn);
             System.Console.WriteLine("Waiting play: " + match.currentPlayer);
+
+            if (match.check)
+            {
+                Console.WriteLine("CHECK!");
+            }
         }
 
         public static void PrintCapturedPieces(ChessMatch match)

@@ -22,6 +22,10 @@ namespace tabletop
         {
             qtdMoves++;
         }
+        public void DecrementQtdMove()
+        {
+            qtdMoves--;
+        }
 
         public bool ThereArePossibleMoves()
         {

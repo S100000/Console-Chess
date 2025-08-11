@@ -12,6 +12,7 @@ namespace Chess
         public bool finished { get; private set; }
         private HashSet<Piece> pieces;
         private HashSet<Piece> captured;
+        public bool check { get; private set; }
 
         public ChessMatch()
         {
@@ -19,12 +20,13 @@ namespace Chess
             turn = 1;
             currentPlayer = Color.White;
             finished = false;
+            check = false;
             pieces = new HashSet<Piece>();
             captured = new HashSet<Piece>();
             PlaceAllPieces();
         }
 
-        public void PerformeMove(Position origin, Position destiny)
+        public Piece PerformeMove(Position origin, Position destiny)
         {
             Piece p = tab.RemovePiece(origin);
             p.IcrementQtdMove();
@@ -34,13 +36,42 @@ namespace Chess
             {
                 captured.Add(capturedPiece);
             }
+            return capturedPiece;
+        }
+
+        public void undoMove(Position origin, Position destiny, Piece capturedPiece)
+        {
+            Piece p = tab.RemovePiece(destiny);
+            p.DecrementQtdMove();
+            if (capturedPiece != null)
+            {
+                tab.PlacePiece(capturedPiece, destiny);
+                captured.Remove(capturedPiece);
+            }
+            tab.PlacePiece(p, origin);
         }
 
         public void makesAPlay(Position Origin, Position Destiny)
         {
-            PerformeMove(Origin, Destiny);
+            Piece capturedPiece = PerformeMove(Origin, Destiny);
+
+            if (IsInCheck(currentPlayer))
+            {
+                undoMove(Origin, Destiny, capturedPiece);
+                throw new TabletopException("you can't put yourself in check");
+            }
+
+            if (IsInCheck(Opponent(currentPlayer)))
+            {
+                check = true;
+            }
+            else
+            {
+                check = false;
+            }
             turn++;
             changePlayer();
+
         }
 
         public void OriginValidate(Position pos)
@@ -105,6 +136,49 @@ namespace Chess
             }
             aux.ExceptWith(CapturedPieces(color));
             return aux;
+        }
+
+        private Color Opponent(Color color)
+        {
+            if (color == Color.White)
+            {
+                return Color.Black;
+            }
+            else
+            {
+                return Color.White;
+            }
+        }
+
+        private Piece king(Color color)
+        {
+            foreach (Piece x in PiecesInGame(color))
+            {
+                if (x is King)
+                {
+                    return x;
+                }
+            }
+            return null;
+        }
+
+        public bool IsInCheck(Color color)
+        {
+            Piece K = king(color);
+            if (K == null)
+            {
+                throw new TabletopException("thers no " + color + "king");
+            }
+
+            foreach (Piece x in PiecesInGame(Opponent(color)))
+            {
+                bool[,] mat = x.possibleMoves();
+                if (mat[K.pos.line, K.pos.column])
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void PlaceNewPiece(char column, int line, Piece piece)
