@@ -36,6 +36,26 @@ namespace Chess
             {
                 captured.Add(capturedPiece);
             }
+
+            //#specialmove castling white
+            if (p is King && destiny.column == origin.column + 2)
+            {
+                Position originT = new Position(origin.line, origin.column + 3);
+                Position destinyT = new Position(origin.line, origin.column + 1);
+                Piece T = tab.RemovePiece(originT);
+                T.IcrementQtdMove();
+                tab.PlacePiece(T, destinyT);
+            }
+
+            //#specialmove castling black
+            if (p is King && destiny.column == origin.column - 2)
+            {
+                Position originT = new Position(origin.line, origin.column - 4);
+                Position destinyT = new Position(origin.line, origin.column - 1);
+                Piece T = tab.RemovePiece(originT);
+                T.IcrementQtdMove();
+                tab.PlacePiece(T, destinyT);
+            }
             return capturedPiece;
         }
 
@@ -49,6 +69,26 @@ namespace Chess
                 captured.Remove(capturedPiece);
             }
             tab.PlacePiece(p, origin);
+
+            //#specialmove castling white
+            if (p is King && destiny.column == origin.column + 2)
+            {
+                Position originT = new Position(origin.line, origin.column + 3);
+                Position destinyT = new Position(origin.line, origin.column + 1);
+                Piece T = tab.RemovePiece(destinyT);
+                T.DecrementQtdMove();
+                tab.PlacePiece(T, originT);
+            }
+            
+              //#specialmove castling black
+            if (p is King && destiny.column == origin.column - 2)
+            {
+                Position originT = new Position(origin.line, origin.column - 4);
+                Position destinyT = new Position(origin.line, origin.column - 1);
+                Piece T = tab.RemovePiece(destinyT);
+                T.DecrementQtdMove();
+                tab.PlacePiece(T, originT);
+            }
         }
 
         public void makesAPlay(Position Origin, Position Destiny)
@@ -231,7 +271,7 @@ namespace Chess
             PlaceNewPiece('b', 1, new Knight(Color.White, tab));
             PlaceNewPiece('c', 1, new Bishop(Color.White, tab));
             PlaceNewPiece('d', 1, new Queen(Color.White, tab));
-            PlaceNewPiece('e', 1, new King(Color.White, tab));
+            PlaceNewPiece('e', 1, new King(Color.White, tab, this));
             PlaceNewPiece('f', 1, new Bishop(Color.White, tab));
             PlaceNewPiece('g', 1, new Knight(Color.White, tab));
             PlaceNewPiece('h', 1, new Tower(Color.White, tab));
@@ -248,7 +288,7 @@ namespace Chess
             PlaceNewPiece('b', 8, new Knight(Color.Black, tab));
             PlaceNewPiece('c', 8, new Bishop(Color.Black, tab));
             PlaceNewPiece('d', 8, new Queen(Color.Black, tab));
-            PlaceNewPiece('e', 8, new King(Color.Black, tab));
+            PlaceNewPiece('e', 8, new King(Color.Black, tab, this));
             PlaceNewPiece('f', 8, new Bishop(Color.Black, tab));
             PlaceNewPiece('g', 8, new Knight(Color.Black, tab));
             PlaceNewPiece('h', 8, new Tower(Color.Black, tab));
