@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ConsoleChessLast")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+647de354be410fb461dd122787224fcf4a11a6e1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e66ee479d18136f6fe223ac382895b2c2fc03c40")]
 [assembly: System.Reflection.AssemblyProductAttribute("ConsoleChessLast")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ConsoleChessLast")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -5,8 +5,10 @@ namespace Chess
 {
     public class Pawn : Piece
     {
-        public Pawn(Color color, Tabletop tab) : base(color, tab)
+        private ChessMatch match;
+        public Pawn(Color color, Tabletop tab, ChessMatch match) : base(color, tab)
         {
+            this.match = match;
         }
 
         private bool ThereIsAEnemy(Position position)
@@ -51,6 +53,21 @@ namespace Chess
                 {
                     mat[position.line, position.column] = true;
                 }
+
+                //#specialmoves en passant white
+                if (pos.line == 3)
+                {
+                    Position left = new Position(pos.line, pos.column - 1);
+                    if (tab.isPositionValid(left) && ThereIsAEnemy(left) && tab.showPiece(left) == match.enPassant)
+                    {
+                        mat[left.line - 1, left.column] = true;
+                    }
+                    Position right = new Position(pos.line, pos.column + 1);
+                    if (tab.isPositionValid(right) && ThereIsAEnemy(right) && tab.showPiece(right) == match.enPassant)
+                    {
+                        mat[right.line - 1, right.column] = true;
+                    }
+                }
             }
             else
             {
@@ -77,6 +94,21 @@ namespace Chess
                 if (tab.isPositionValid(position) && ThereIsAEnemy(position))
                 {
                     mat[position.line, position.column] = true;
+                }
+
+                //#specialmoves en passant black
+                if (pos.line == 4)
+                {
+                    Position left = new Position(pos.line, pos.column - 1);
+                    if (tab.isPositionValid(left) && ThereIsAEnemy(left) && tab.showPiece(left) == match.enPassant)
+                    {
+                        mat[left.line + 1, left.column] = true;
+                    }
+                    Position right = new Position(pos.line, pos.column + 1);
+                    if (tab.isPositionValid(right) && ThereIsAEnemy(right) && tab.showPiece(right) == match.enPassant)
+                    {
+                        mat[right.line + 1, right.column] = true;
+                    }
                 }
             }
 
