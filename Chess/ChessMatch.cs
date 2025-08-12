@@ -100,7 +100,7 @@ namespace Chess
 
         public void DestinyValidate(Position origin, Position Destiny)
         {
-            if (!tab.showPiece(origin).CanMoveTo(Destiny))
+            if (!tab.showPiece(origin).possibleMove(Destiny))
             {
                 throw new TabletopException("Invalid Destiny.");
             }
@@ -227,12 +227,40 @@ namespace Chess
         }
         private void PlaceAllPieces()
         {
-            PlaceNewPiece('c', 1, new Tower(Color.White, tab));
-            PlaceNewPiece('d', 1, new King(Color.White, tab));
-            PlaceNewPiece('h', 7, new Tower(Color.White, tab));
+            PlaceNewPiece('a', 1, new Tower(Color.White, tab));
+            PlaceNewPiece('b', 1, new Knight(Color.White, tab));
+            PlaceNewPiece('c', 1, new Bishop(Color.White, tab));
+            PlaceNewPiece('d', 1, new Queen(Color.White, tab));
+            PlaceNewPiece('e', 1, new King(Color.White, tab));
+            PlaceNewPiece('f', 1, new Bishop(Color.White, tab));
+            PlaceNewPiece('g', 1, new Knight(Color.White, tab));
+            PlaceNewPiece('h', 1, new Tower(Color.White, tab));
+            PlaceNewPiece('a', 2, new Pawn(Color.White, tab));
+            PlaceNewPiece('b', 2, new Pawn(Color.White, tab));
+            PlaceNewPiece('c', 2, new Pawn(Color.White, tab));
+            PlaceNewPiece('d', 2, new Pawn(Color.White, tab));
+            PlaceNewPiece('e', 2, new Pawn(Color.White, tab));
+            PlaceNewPiece('f', 2, new Pawn(Color.White, tab));
+            PlaceNewPiece('g', 2, new Pawn(Color.White, tab));
+            PlaceNewPiece('h', 2, new Pawn(Color.White, tab));
+
+            PlaceNewPiece('a', 8, new Tower(Color.Black, tab));
+            PlaceNewPiece('b', 8, new Knight(Color.Black, tab));
+            PlaceNewPiece('c', 8, new Bishop(Color.Black, tab));
+            PlaceNewPiece('d', 8, new Queen(Color.Black, tab));
+            PlaceNewPiece('e', 8, new King(Color.Black, tab));
+            PlaceNewPiece('f', 8, new Bishop(Color.Black, tab));
+            PlaceNewPiece('g', 8, new Knight(Color.Black, tab));
+            PlaceNewPiece('h', 8, new Tower(Color.Black, tab));
+            PlaceNewPiece('a', 7, new Pawn(Color.Black, tab));
+            PlaceNewPiece('b', 7, new Pawn(Color.Black, tab));
+            PlaceNewPiece('c', 7, new Pawn(Color.Black, tab));
+            PlaceNewPiece('d', 7, new Pawn(Color.Black, tab));
+            PlaceNewPiece('e', 7, new Pawn(Color.Black, tab));
+            PlaceNewPiece('f', 7, new Pawn(Color.Black, tab));
+            PlaceNewPiece('g', 7, new Pawn(Color.Black, tab));
+            PlaceNewPiece('h', 7, new Pawn(Color.Black, tab));
             
-            PlaceNewPiece('a', 8, new King(Color.Black, tab));
-            PlaceNewPiece('b', 8, new Tower(Color.Black, tab));
         }
     }
 }

@@ -43,7 +43,7 @@ namespace tabletop
             return false;
         }
 
-        public bool CanMoveTo(Position pos)
+        public bool possibleMove(Position pos)
         {
             return possibleMoves()[pos.line, pos.column];
         }
